@@ -13,6 +13,15 @@ public class AngularSpringController {
     @Autowired
     UserRepository users;
 
+    @RequestMapping(path = "/")
+    public String homepage(){
+        return"home";
+    }
+    @RequestMapping (path ="/login",method = RequestMethod.POST)
+    public String login(String username, String password){
+        RestUser restuser = new RestUser(username, password);
+        return "";
+    }
     @RequestMapping(path = "/user", method = RequestMethod.GET)
     public List<User> getUsers() {
         return (List<User>) users.findAll();
@@ -36,8 +45,15 @@ public class AngularSpringController {
     public User getUser(@PathVariable("id") int id) {
         return users.findOne(id);
 
-    }
 
+
+    }
+    @RequestMapping(path = "/logout/", method = RequestMethod.POST)
+    public String logout(){
+
+        return"";
+
+    }
 }
 
 
